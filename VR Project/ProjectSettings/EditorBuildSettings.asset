@@ -8,4 +8,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/ExternalReceiver.unity
     guid: a8cb6a0ea0acf0e4399570a0194b57a1
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 88169c8b648023b44a8cf5944d640519, type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 612a04cec57f99245b5b2496280a969f, type: 2}
