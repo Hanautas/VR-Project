@@ -88,6 +88,13 @@ public class Looker : MonoBehaviour
 
     private void SetTarget(GameObject target)
     {
-        lookAtHead.Target = target.transform;
+		if (target != null)
+		{
+			lookAtHead.Target = target.transform;
+		}
+		else
+		{
+			lookAtHead.Target = null;
+		}
     }
 }

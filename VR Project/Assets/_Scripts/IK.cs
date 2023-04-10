@@ -1,6 +1,8 @@
 using UnityEngine;
 
-[ExecuteInEditMode]
+// Source: https://wirewhiz.com/how-to-code-two-bone-ik-in-unity/
+
+//[ExecuteInEditMode]
 public class IK : MonoBehaviour
 {
     public Transform Upper;//root of upper arm
@@ -29,18 +31,19 @@ public class IK : MonoBehaviour
         //Set the rotation of the upper arm
         Upper.rotation = Quaternion.LookRotation(Target.position-Upper.position, Quaternion.AngleAxis(UpperElbowRotation, Lower.position - Upper.position) * (en));
         Upper.rotation *= Quaternion.Inverse(Quaternion.FromToRotation(Vector3.forward, Lower.localPosition));
-        Upper.rotation=  Quaternion.AngleAxis(-CosAngle(a, c, b), -en)*Upper.rotation;
+        Upper.rotation = Quaternion.AngleAxis(-CosAngle(a, c, b), -en)*Upper.rotation;
 
         //set the rotation of the lower arm
-        Lower.rotation =  Quaternion.LookRotation(Target.position - Lower.position, Quaternion.AngleAxis(LowerElbowRotation, End.position - Lower.position) * (en));
+        Lower.rotation = Quaternion.LookRotation(Target.position - Lower.position, Quaternion.AngleAxis(LowerElbowRotation, End.position - Lower.position) * (en));
         Lower.rotation *= Quaternion.Inverse(Quaternion.FromToRotation(Vector3.forward, End.localPosition));
 
-        //Lower.LookAt(Lower, Pole.position - Upper.position);
-        //Lower.rotation = Quaternion.AngleAxis(CosAngle(a, b, c), en);
+        Lower.LookAt(Lower, Pole.position - Upper.position);
+        Lower.rotation = Quaternion.AngleAxis(CosAngle(a, b, c), en);
     }
 
     //function that finds angles using the cosine rule 
-    float CosAngle(float a, float b, float c) {
+    private float CosAngle(float a, float b, float c)
+    {
         if ( !float.IsNaN(Mathf.Acos((-(c * c) + (a * a) + (b * b)) / (-2 * a * b)) * Mathf.Rad2Deg))
         {
             return Mathf.Acos((-(c * c) + (a * a) + (b * b)) / (2 * a * b)) * Mathf.Rad2Deg;
