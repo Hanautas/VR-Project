@@ -10,7 +10,7 @@ public class IK : MonoBehaviour
     public Transform End;//root of hand
     public Transform Target;//target position of hand
     public Transform Pole;//direction to bend towards 
-    public float UpperElbowRotation;//Rotation offsetts
+    public float UpperElbowRotation;//Rotation offsets
     public float LowerElbowRotation;
 
     private float a;//values for use in cos rule
@@ -24,7 +24,7 @@ public class IK : MonoBehaviour
         b = End.localPosition.magnitude;
         c = Vector3.Distance(Upper.position, Target.position);
         en = Vector3.Cross(Target.position-Upper.position, Pole.position-Upper.position);
-        Debug.Log("The angle is: " + CosAngle(a,b,c));
+        //Debug.Log("The angle is: " + CosAngle(a,b,c));
         Debug.DrawLine(Upper.position,Target.position);
         Debug.DrawLine((Upper.position+Target.position)/2,Lower.position);
 
